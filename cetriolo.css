@@ -1,0 +1,201 @@
+html, body {
+  margin: 0; padding: 0;
+  min-height: 100%;
+  font-family: arial;
+  font-size: 20px;
+  overflow-x: hidden;
+}
+
+h1 {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  margin: 0;
+  font-size: 40px;
+}
+
+h2 {
+  font-style: italic;
+  margin-top: 5px;
+  font-size: 25px;
+}
+
+#clock {
+  position: relative;
+  margin: 20px auto 0;
+  width: 150px;
+  z-index: 10;
+}
+
+#clock_face {
+  width: 150px; height: 150px;
+  background: url("img/cetriolo_big.png");
+}
+#clock_face div {
+  text-align: center;
+  font-size: 35px;
+  padding-top: 50px;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.clock_button {
+  width: 60px;
+  z-index: -1;
+  position: absolute;
+  top: 3px;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  padding: 2px 5px;
+  cursor: default;
+  font-size: 22px;
+}
+.clock_button:hover {
+}
+#slice {
+  left: -40px;
+  background: #8c3;
+}
+#break {
+  right: -40px;
+  background: #57c;
+}
+span.timespan {
+  display: block;
+  font-size: 9px;
+}
+
+#workspace, #archive, #bin {
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+}
+#workspace {
+  top: 120px; left: 30px; right: 20px;
+  min-height: 500px;
+  border: 2px solid #9bd145;
+}
+#archive, #bin {
+  padding: 20px 30px;
+  width: 350px;
+  right: -420px;
+  -webkit-transition: right .5s ease;
+  -moz-transition: right .5s ease;
+  transition: right .5s ease;
+}
+#archive {
+  border: 2px solid #49d;
+  top: 30%; bottom: 40%;
+}
+#bin {
+  border: 2px solid #d55;
+  top: 65%; bottom: 5%;
+}
+
+#newtask {
+  position: absolute;
+  top: 120px;
+  width: 310px;
+  left: -290px;
+}
+#newtask .task {
+  margin-bottom: -20px;
+  -webkit-transition: margin-left .8s ease;
+  -moz-transition: margin-left .8s ease;
+  transition: margin-left .8s ease;
+}
+#newtask .task:hover {
+  margin-left: 15px;
+}
+
+.task_list {
+  width: 310px;
+  padding: 20px 30px;
+  float: left;
+  position: relative;
+}
+
+#workspace_controls {
+  position: absolute;
+  right: 20px; top: 10px;
+}
+#workspace_controls h2 {
+  cursor: pointer;
+  color: silver;
+  font-style: normal;
+  display: inline;
+}
+.del_list {
+  color: silver;
+  cursor: pointer;
+}
+
+.task {
+  padding: 2px 5px 30px;
+  width: 300px;
+  color: white;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.task p { margin: 0; }
+.task_stats {
+  background-image: url("img/cetriolo_small.png");
+  background-position: right;
+  background-repeat: no-repeat;
+  padding-right: 25px;
+  height: 20px;
+  position: absolute;
+  bottom: 3px; right: 5px;
+}
+
+.task.selected, .clock_button:hover {
+  box-shadow: -3px -3px 10px orange, 3px 3px 10px orange, 3px -3px 10px orange, -3px 3px 10px orange;
+}
+
+.edit_desc {
+  background: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+  border: none;
+  width: 100%;
+  outline: none;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.dialog {
+  position: absolute;
+  z-index: 20;
+  left: 70px; right: 70px;
+  top: 40px;
+  border-radius: 12px;
+  background: #888;
+  color: white;
+  padding: 10px 20px;
+}
+.dialog input, .dialog select, .dialog button {
+  border: 0;
+  font-size: inherit;
+}
+.dialog button {
+  margin-left: 5px;
+}
+
+#search_close {
+  position: absolute;
+  top: 10px; right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+}
+#search_dialog .slice_col {
+  text-align: right;
+  background-image: url("img/cetriolo_small.png");
+  background-position: right;
+  background-repeat: no-repeat;
+  padding: 0 25px 0 50px;
+  border-right: 30px solid transparent;
+}

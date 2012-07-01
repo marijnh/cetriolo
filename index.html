@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Cetriolo</title>
+    <link rel=stylesheet href="cetriolo.css">
+  </head>
+  <body>
+    <h1>Cetriolo</h1>
+    <div id=clock>
+      <div class=clock_button id=slice>
+        Slice <span class=timespan>(25m)</span>
+      </div>
+      <div class=clock_button id=break>
+        Break <span class=timespan>(5m)</span>
+      </div>
+      <div id=clock_face><div>00:00</div></div>
+    </div>
+    <div id=workspace>
+      <div id=workspace_controls>
+        <h2 id=search>øsearch</h2>
+        <h2 id=new_list>+list</h2>
+      </div>
+    </div>
+    <div id=archive><h2>Archive</h2></div>
+    <div id=bin><h2>Throw away</h2></div>
+    <div id=newtask></div>
+    <div class=dialog id=search_dialog style="display: none">
+      <div id=search_close>×</div>
+      <p>
+        Search: <input type=text id=search_text> &nbsp;
+        list: <select id=search_list></select> &nbsp;
+        total: <span id=search_total>0</span>
+      </p>
+      <div id=search_result></div>
+    </div>
+  </body>
+  <script src="cetriolo.js"></script>
+</html>
