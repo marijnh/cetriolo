@@ -17,7 +17,7 @@
     </div>
     <div id=workspace>
       <div id=workspace_controls>
-        <h2 id=search>øsearch</h2>
+        <h2 id=search>⌕search</h2>
         <h2 id=new_list>+list</h2>
       </div>
     </div>
@@ -29,10 +29,12 @@
       <p>
         Search: <input type=text id=search_text> &nbsp;
         list: <select id=search_list></select> &nbsp;
-        total: <span id=search_total>0</span>
+        total: <span id=search_total>0</span> <span id=search_total_icon>&nbsp; &nbsp; &nbsp;</span>
       </p>
       <div id=search_result></div>
     </div>
+    <audio src="media/pling.mp3" preload="auto" id="pling"></audio>
+    <audio src="media/beep.mp3" preload="auto" id="beep"></audio>
   </body>
   <script src="cetriolo.js"></script>
 </html>

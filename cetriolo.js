@@ -21,14 +21,23 @@ function setClock(endTime, type) {
       clearInterval(runningClock);
       document.title = "Cetriolo (BEEP BEEP)";
       if (type == "slice" && selectedTask) {
+        playTwice("pling");
         selectedTask.slices++;
         refreshTask(selectedTask);
         scheduleSave();
+      } else {
+        playTwice("beep");
       }
     }
   }
   runningClock = setInterval(step, 1000);
   step();
+}
+
+function playTwice(id) {
+  var elt = byId(id);
+  elt.play();
+  setTimeout(function() {elt.play();}, Math.floor(elt.duration * 1000 + 100));
 }
 
 window.addEventListener("focus", function() {

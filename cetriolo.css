@@ -29,7 +29,7 @@ h2 {
 
 #clock_face {
   width: 150px; height: 150px;
-  background: url("img/cetriolo_big.png");
+  background: url("media/cetriolo_big.png");
 }
 #clock_face div {
   text-align: center;
@@ -140,7 +140,7 @@ span.timespan {
 }
 .task p { margin: 0; }
 .task_stats {
-  background-image: url("img/cetriolo_small.png");
+  background-image: url("media/cetriolo_small.png");
   background-position: right;
   background-repeat: no-repeat;
   padding-right: 25px;
@@ -193,9 +193,14 @@ span.timespan {
 }
 #search_dialog .slice_col {
   text-align: right;
-  background-image: url("img/cetriolo_small.png");
+  background-image: url("media/cetriolo_small.png");
   background-position: right;
   background-repeat: no-repeat;
   padding: 0 25px 0 50px;
   border-right: 30px solid transparent;
+}
+#search_total_icon {
+  background-image: url("media/cetriolo_small.png");
+  background-position: left;
+  background-repeat: no-repeat;
 }
