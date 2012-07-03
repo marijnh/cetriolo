@@ -413,6 +413,11 @@ function updateSearchResult() {
   }, false);
 }
 
+// Prevent drag-scroll on body's X axis
+document.addEventListener("scroll", function() {
+  if (document.body.scrollLeft > 0) document.body.scrollLeft = 0;
+}, false);
+
 // Save and load
 
 function toSavedData(t, list) {
