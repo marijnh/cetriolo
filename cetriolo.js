@@ -227,6 +227,12 @@ function selectTask(task) {
   scheduleSave();
 }
 
+var prefix = "";
+if (window.opera) prefix = "o";
+else if (/gecko\/\d{7}/i.test(navigator.userAgent)) prefix = "moz";
+else if (/MSIE \d/.test(navigator.userAgent)) prefix = "ie";
+else if (/WebKit\//.test(navigator.userAgent)) prefix = "webkit";
+
 function renderTask(task) {
   dummyElement.innerHTML = "<div class=task><p><span class=edit>" + htmlEscape(task.label) + 
     "</span></p><div class=task_stats>" + task.slices + "</div>";
@@ -234,7 +240,7 @@ function renderTask(task) {
   elt.task = task;
   elt.style.background = task.col;
   var off = (task.wobble * 100) % 10 - 5;
-  elt.style.webkitTransform = "rotate(" + (task.wobble - .5) * 3.5 + "deg) translate(" + off + "px, 0px)";
+  elt.style[prefix + "Transform"] = elt.style.transform = "rotate(" + (task.wobble - .5) * 3.5 + "deg) translate(" + off + "px, 0px)";
   if (selectedTask == task) addClass(elt, "selected");
   return elt;
 }
