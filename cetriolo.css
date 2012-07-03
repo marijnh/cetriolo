@@ -9,7 +9,7 @@ html, body {
 h1 {
   position: absolute;
   top: 20px;
-  right: 25px;
+  right: 95px;
   margin: 0;
   font-size: 40px;
 }
@@ -203,4 +203,28 @@ span.timespan {
   background-image: url("media/cetriolo_small.png");
   background-position: left;
   background-repeat: no-repeat;
+}
+
+.github {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 200px; height: 200px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.github div {
+  border-top: 1px solid #822;
+  border-bottom: 1px solid #822;
+  padding: 2px 0;
+}
+.github a {
+  display: block;
+  text-align: center;
+  background: #822;
+  color: white;
+  font-size: 12px;
+  text-decoration: none;
 }
