@@ -54,8 +54,7 @@ h2 {
   cursor: default;
   font-size: 22px;
 }
-.clock_button:hover {
-}
+
 #slice {
   left: -40px;
   background: #8c3;
@@ -100,7 +99,7 @@ span.timespan {
   position: absolute;
   top: 120px;
   width: 310px;
-  left: -290px;
+  left: -295px;
 }
 #newtask .task {
   margin-bottom: -20px;
@@ -220,15 +219,15 @@ span.timespan {
   transform: rotate(45deg);
 }
 .github div {
-  border-top: 1px solid #822;
-  border-bottom: 1px solid #822;
+  border-top: 1px solid orange;
+  border-bottom: 1px solid orange;
   padding: 1px 0;
 }
 .github a {
   font-family: arial;
   display: block;
   text-align: center;
-  background: #822;
+  background: orange;
   color: white;
   font-size: 12px;
   text-decoration: none;
