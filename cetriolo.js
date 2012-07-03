@@ -44,23 +44,19 @@ window.addEventListener("focus", function() {
   if (/BEEP/.test(document.title)) document.title = "Cetriolo";
 }, false);
 
-byId("slice").addEventListener("mousedown", function(e) {
+byId("slice").addEventListener("click", function(e) {
   setClock((+new Date) + 1500000, "slice");
-  e.stopPropagation();
 }, false);
-byId("break").addEventListener("mousedown", function(e) {
+byId("break").addEventListener("click", function(e) {
   setClock((+new Date) + 300000, "break");
-  e.stopPropagation();
 }, false);
-byId("new_list").addEventListener("mousedown", function(e) {
+byId("new_list").addEventListener("click", function(e) {
   addList("New list");
   updateListDelControls();
   scheduleSave();
-  e.stopPropagation();
 });
-byId("search").addEventListener("mousedown", function(e) {
+byId("search").addEventListener("click", function(e) {
   startSearch();
-  e.stopPropagation();
 });
 
 function eventTask(e) {
@@ -76,12 +72,15 @@ function isEditableText(e) {
 window.addEventListener("mousedown", function(e) {
   if (e.target.nodeName == "TEXTAREA") return;
   if (document.activeElement) document.activeElement.blur();
-  var edit = isEditableText(e), task = eventTask(e);
+  var task = eventTask(e);
   if (!task) {
-    if (edit) {
-      e.preventDefault();
-      startEditing(edit);
-    } else selectTask(null);
+    if (e.target.nodeName == "SPAN" && /\bedit\b/.test(e.target.className)) {
+      var elt = e.target.parentNode, around = elt.parentNode;
+      if (around.list) {
+        startEditing(around.list, elt);
+        e.preventDefault();
+      }
+    }
     return;
   }
   e.preventDefault();
@@ -106,8 +105,9 @@ window.addEventListener("mousedown", function(e) {
     window.removeEventListener("mousemove", move, false);
     window.removeEventListener("mouseup", up, false);
     if (!dragging) {
-      if (edit) startEditing(edit);
-      else selectTask(task);
+      if (task == selectedTask && e.target.nodeName == "SPAN" && /\bedit\b/.test(e.target.className)) {
+        startEditing(task, e.target.parentNode);
+      } else selectTask(task);
       return;
     }
 
@@ -147,16 +147,16 @@ window.addEventListener("mousedown", function(e) {
   window.addEventListener("mouseup", up, false);
 }, false);
 
-function startEditing(spec) {
-  var oldHeight = spec.elt.offsetHeight;
-  spec.elt.innerHTML = "";
-  var te = spec.elt.appendChild(document.createElement("textarea"));
-  var heightDiff = oldHeight - spec.elt.offsetHeight;
+function startEditing(val, elt) {
+  var oldHeight = elt.offsetHeight;
+  elt.innerHTML = "";
+  var te = elt.appendChild(document.createElement("textarea"));
+  var heightDiff = oldHeight - elt.offsetHeight;
   if (heightDiff != 0) { // Make sure height of paragraph doesn't change
     var d = (heightDiff / 2) + "px";
     te.style.marginTop = te.style.marginBottom = d;
   }
-  te.value = spec.val.label;
+  te.value = val.label;
   te.className = "edit_desc";
   te.rows = 1;
   function updateHeight() {
@@ -167,7 +167,7 @@ function startEditing(spec) {
   }
   updateHeight();
   te.focus();
-  te.selectionStart = spec.val.label.length;
+  te.selectionStart = val.label.length;
   te.addEventListener("input", updateHeight, false);
   te.addEventListener("keydown", function(e) {
     if (e.keyCode == 27 || e.keyCode == 13) {
@@ -180,9 +180,9 @@ function startEditing(spec) {
   function done() {
     if (finished) return;
     finished = true;
-    var newVal = te.value, changed = newVal && newVal != spec.val.label;
-    if (changed) spec.val.label = newVal;
-    spec.elt.innerHTML = "<span>" + htmlEscape(spec.val.label) + "</span>";
+    var newVal = te.value, changed = newVal && newVal != val.label;
+    if (changed) val.label = newVal;
+    elt.innerHTML = "<span class=edit>" + htmlEscape(val.label) + "</span>";
     if (changed) scheduleSave();
   }
 }
@@ -277,10 +277,9 @@ function updateListDelControls() {
       var p = list.div.appendChild(document.createElement("p"));
       p.className = "del_list";
       p.innerHTML = "<span>(Delete list)</span>";
-      p.firstChild.addEventListener("mousedown", function(e) {
+      p.firstChild.addEventListener("click", function(e) {
         removeList(list);
         scheduleSave();
-        e.stopPropagation();
       }, false);
     }
   });
@@ -330,9 +329,8 @@ byId("search_list").addEventListener("change", function(e) {
     updateSearchResult();
   }
 });
-byId("search_close").addEventListener("mousedown", function(e) {
+byId("search_close").addEventListener("click", function(e) {
   byId("search_dialog").style.display = "none";
-  e.preventDefault();
 });
 
 function updateSearchResult() {
