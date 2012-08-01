@@ -32,6 +32,7 @@ h2 {
 #clock_face {
   width: 150px; height: 150px;
   background: url("media/cetriolo_big.png");
+  pointer-events: none;
 }
 #clock_face div {
   text-align: center;
